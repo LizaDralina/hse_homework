@@ -104,10 +104,6 @@ def parse_matrix(text: str) -> Optional[Matrix]:
     except Exception:
         return None
 
-    # try:
-    #     M = eval(text)
-    # except NameError:
-    #     return None
 
     if isinstance(M, int):
         M = int(M)
