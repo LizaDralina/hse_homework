@@ -11,19 +11,6 @@ def test_matrix_sum():
 
     assert result == Matrix([[4, 5], [-3, 12]])
 
-#
-# def test_bad_matrix_sum():
-#     m_1 = Matrix([[1, 1], [-2, 3]])
-#     m_2 = Matrix([[3, 4], [-1, 9], [-1, 9]])
-#
-#     was_exception = False
-#     try:
-#         m_1 + m_2
-#     except MatrixError:
-#         was_exception = True
-#
-#     assert was_exception
-
 
 def test_bad_matrix_sum():
     m_1 = Matrix([[1, 1], [-2, 3]])
