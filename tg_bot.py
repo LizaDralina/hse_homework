@@ -83,6 +83,7 @@ async def mul(text: str, message: types.Message, but):
 
         first_matrix = None
         second_matrix = None
+        prev_cmd = None
 
         return
 
@@ -106,6 +107,7 @@ async def transpose(text: str, message: types.Message, but):
             await message.answer('результат транспонирования:\n' + str(result), reply_markup=but)
 
             first_matrix = None
+            prev_cmd = None
 
             return
 
@@ -131,6 +133,7 @@ async def size(text: str, message: types.Message, but):
             await message.answer('размерность:\n' + str(result), reply_markup=but)
 
             first_matrix = None
+            prev_cmd = None
             return
 
 async def add(text: str, message: types.Message, but):
@@ -162,6 +165,7 @@ async def add(text: str, message: types.Message, but):
 
         first_matrix = None
         second_matrix = None
+        prev_cmd = None
 
         return
 
@@ -181,13 +185,17 @@ async def pow(text: str, message: types.Message, but):
             await message.answer('успешно считали матрицу, введите число')
             return
 
-    number = float(text)
+    try:
+        number = float(text)
+    except Exception:
+        await message.answer('Необходимо число')
     try:
         result = first_matrix ** number
         await message.answer('результат возведения в степень:\n' + str(result), reply_markup=but)
     except MatrixError:
         await message.answer('Матрица некорректна для возведения в степень. Можно возвести в степень только квадратную матрицу')
     first_matrix = None
+    prev_cmd = None
     return
 
 executor.start_polling(dp_bot)
